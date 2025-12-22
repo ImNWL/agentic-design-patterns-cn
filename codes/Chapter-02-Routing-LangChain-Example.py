@@ -4,9 +4,14 @@
 # See the LICENSE file in the repository for the full license text.
 
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough, RunnableBranch
+
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Colab 代码链接: https://colab.research.google.com/drive/1Yh3eUcvajJfgTFKhEQga6bJ3yyKodAmg
 
@@ -17,8 +22,10 @@ from langchain_core.runnables import RunnablePassthrough, RunnableBranch
 # Ensure your API key environment variable is set (e.g., GOOGLE_API_KEY)
 # 确保你的 API 密钥环境变量已设置 (如 GOOGLE_API_KEY)
 try:
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
-    print(f"Language model initialized: {llm.model}")
+    # llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+    # print(f"Language model initialized: {llm.model}")
+    llm = ChatOpenAI(temperature=0, model=os.getenv("OPENAI_MODEL"), api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_API_BASE"))
+    print(f"Language model initialized: {llm.model_name}")
 except Exception as e:
     print(f"Error initializing language model: {e}")
     llm = None
@@ -28,17 +35,17 @@ except Exception as e:
 
 def booking_handler(request: str) -> str:
     """Simulates the Booking Agent handling a request."""
-    print("\n--- DELEGATING TO BOOKING HANDLER ---")
+    print("--- DELEGATING TO BOOKING HANDLER ---")
     return f"Booking Handler processed request: '{request}'. Result: Simulated booking action."
 
 def info_handler(request: str) -> str:
     """Simulates the Info Agent handling a request."""
-    print("\n--- DELEGATING TO INFO HANDLER ---")
+    print("--- DELEGATING TO INFO HANDLER ---")
     return f"Info Handler processed request: '{request}'. Result: Simulated information retrieval."
 
 def unclear_handler(request: str) -> str:
     """Handles requests that couldn't be delegated."""
-    print("\n--- HANDLING UNCLEAR REQUEST ---")
+    print("--- HANDLING UNCLEAR REQUEST ---")
     return f"Coordinator could not delegate request: '{request}'. Please clarify."
 
 # --- Define Coordinator Router Chain (equivalent to ADK coordinator's instruction) ---
@@ -100,16 +107,19 @@ def main():
 
     print("--- Running with a booking request ---")
     request_a = "Book me a flight to London."
+    print(f"Request A: {request_a}")
     result_a = coordinator_agent.invoke({"request": request_a})
     print(f"Final Result A: {result_a}")
 
     print("\n--- Running with an info request ---")
     request_b = "What is the capital of Italy?"
+    print(f"Request B: {request_b}")
     result_b = coordinator_agent.invoke({"request": request_b})
     print(f"Final Result B: {result_b}")
 
     print("\n--- Running with an unclear request ---")
     request_c = "Tell me about quantum physics."
+    print(f"Request C: {request_c}")
     result_c = coordinator_agent.invoke({"request": request_c})
     print(f"Final Result C: {result_c}")
 
