@@ -17,7 +17,7 @@ load_dotenv()
 
 # Initialize the Language Model (using ChatOpenAI is recommended)
 # 初始化语言模型（推荐使用 ChatOpenAI）
-llm = ChatOpenAI(temperature=0)
+llm = ChatOpenAI(temperature=0, model=os.getenv("OPENAI_MODEL"), api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_API_BASE"))
 
 # --- Prompt 1: Extract Information ---
 # --- 提示 1: 提取信息 ---
