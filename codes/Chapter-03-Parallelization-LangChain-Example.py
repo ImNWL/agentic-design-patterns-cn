@@ -7,27 +7,11 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import Runnable, RunnableParallel, RunnablePassthrough
 
-# Colab 代码链接：https://colab.research.google.com/drive/1uK1r9p-5sdX0ffMjAi_dbIkaMedb1sTj
-
-# 安装依赖
-# pip install langchain langchain-community langchain-openai langgraph
-
-# For better security, load environment variables from a .env file
-# 为了更好的安全性，建议从 .env 文件加载环境变量
 from dotenv import load_dotenv
 load_dotenv()
 
 # --- Configuration ---
-# Ensure your API key environment variable is set (e.g., OPENAI_API_KEY)
-# 确保你的 API 密钥环境变量已设置 (如 OPENAI_API_KEY)
-try:
-    llm: Optional[ChatOpenAI] = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
-    if llm:
-        print(f"Language model initialized: {llm.model_name}")
-except Exception as e:
-    print(f"Error initializing language model: {e}")
-    llm = None
-
+llm = ChatOpenAI(temperature=0.7, model=os.getenv("OPENAI_MODEL"), api_key=os.getenv("OPENAI_API_KEY"), base_url=os.getenv("OPENAI_API_BASE"))
 
 # --- Define Independent Chains ---
 # These three chains represent distinct tasks that can be executed in parallel.
@@ -51,7 +35,7 @@ questions_chain: Runnable = (
     | StrOutputParser()
 )
 
-terms_chain: Runnable = (
+terms_chain = (
     ChatPromptTemplate.from_messages([
         ("system", "Identify 5-10 key terms from the following topic, separated by commas:"),
         ("user", "{topic}")
