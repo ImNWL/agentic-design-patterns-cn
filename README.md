@@ -51,44 +51,44 @@ This project is a **bilingual Chinese-English translation** of "Agentic Design P
 
 ### 第一部分：核心设计模式 | Part One: Core Patterns (103 页)
 
-| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 |
-|------|-------------|--------|---------|----------|----------|
-| [第 1 章：提示链](07-Chapter-01-Prompt-Chaining.md) | 分而治之的任务分解模式，将复杂任务分解为处理流水线 | @ginobefun | ✅ | ✅ | ✅ |
-| [第 2 章：路由](08-Chapter-02-Routing.md) | 智能决策与动态分发，根据情境选择最佳行动路径 | @ginobefun | ✅ | ✅ | ✅ |
-| [第 3 章：并行化](09-Chapter-03-Parallelization.md) | 并发执行与性能提升，同时执行多个独立任务 | @ginobefun | ✅ | ✅ | ✅ |
-| [第 4 章：反思](10-Chapter-04-Reflection.md) | 自我评估和迭代改进，通过反馈循环优化输出质量 | @ginobefun | ✅ | ✅ | ✅ |
-| [第 5 章：工具使用](11-Chapter-05-Tool-Use.md) | 外部工具与 API 集成，扩展智能体能力边界 | @ginobefun | ✅ | ✅ | ✅ |
-| [第 6 章：规划](12-Chapter-06-Planning.md) | 多步骤计划制定与执行，实现复杂目标分解 | @ginobefun | ✅ | ✅ | ✅ |
-| [第 7 章：多智能体协作](13-Chapter-07-Multi-Agent-Collaboration.md) | 协同工作架构，多个智能体配合完成任务 | @ginobefun | ✅  | ✅ | ✅ |
+| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 | alex学习 |
+|------|-------------|--------|---------|----------|----------|----------|
+| [第 1 章：提示链](07-Chapter-01-Prompt-Chaining.md) | 分而治之的任务分解模式，将复杂任务分解为处理流水线 | @ginobefun | ✅ | ✅ | ✅ | ✅ |
+| [第 2 章：路由](08-Chapter-02-Routing.md) | 智能决策与动态分发，根据情境选择最佳行动路径 | @ginobefun | ✅ | ✅ | ✅ | ✅ |
+| [第 3 章：并行化](09-Chapter-03-Parallelization.md) | 并发执行与性能提升，同时执行多个独立任务 | @ginobefun | ✅ | ✅ | ✅ | ✅ |
+| [第 4 章：反思](10-Chapter-04-Reflection.md) | 自我评估和迭代改进，通过反馈循环优化输出质量 | @ginobefun | ✅ | ✅ | ✅ | ✅ |
+| [第 5 章：工具使用](11-Chapter-05-Tool-Use.md) | 外部工具与 API 集成，扩展智能体能力边界 | @ginobefun | ✅ | ✅ | ✅ | ⏳ |
+| [第 6 章：规划](12-Chapter-06-Planning.md) | 多步骤计划制定与执行，实现复杂目标分解 | @ginobefun | ✅ | ✅ | ✅ | ⏳ |
+| [第 7 章：多智能体协作](13-Chapter-07-Multi-Agent-Collaboration.md) | 协同工作架构，多个智能体配合完成任务 | @ginobefun | ✅  | ✅ | ✅ | ⏳ |
 
 ### 第二部分：高级设计模式 | Part Two: Advanced Patterns (61 页)
 
-| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 |
-|------|-------------|--------|---------|----------|----------|
-| [第 8 章：记忆管理](14-Chapter-08-Memory-Management.md) | 短期和长期记忆管理，维持上下文连续性 | @郑涛 | ✅ | ✅ | ✅ |
-| [第 9 章：学习与适应](15-Chapter-09-Learning-and-Adaptation.md) | 从经验中学习，持续优化智能体行为 | @陈诗中 | ⏳ | ❌ | ❌ |
-| [第 10 章：模型上下文协议](16-Chapter-10-Model-Context-Protocol.md) | 标准化交互协议，规范智能体通信方式 | @郑涛 | ⏳ | ❌ | ❌ |
-| [第 11 章：目标设定与监控](17-Chapter-11-Goal-Setting-and-Monitoring.md) | 动态目标管理，实时追踪任务进展 | [@李浪溪](https://github.com/seabornlee) | ✅ | ✅ | ⏳ |
+| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 | alex学习 |
+|------|-------------|--------|---------|----------|----------|----------|
+| [第 8 章：记忆管理](14-Chapter-08-Memory-Management.md) | 短期和长期记忆管理，维持上下文连续性 | @郑涛 | ✅ | ✅ | ✅ | 🎯 |
+| [第 9 章：学习与适应](15-Chapter-09-Learning-and-Adaptation.md) | 从经验中学习，持续优化智能体行为 | @陈诗中 | ⏳ | ❌ | ❌ | ⏳ |
+| [第 10 章：模型上下文协议](16-Chapter-10-Model-Context-Protocol.md) | 标准化交互协议，规范智能体通信方式 | @郑涛 | ⏳ | ❌ | ❌ | ⏳ |
+| [第 11 章：目标设定与监控](17-Chapter-11-Goal-Setting-and-Monitoring.md) | 动态目标管理，实时追踪任务进展 | [@李浪溪](https://github.com/seabornlee) | ✅ | ✅ | ⏳ | ⏳ |
 
 ### 第三部分：集成设计模式 | Part Three: Integration Patterns (34 页)
 
-| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 |
-|------|-------------|--------|---------|----------|----------|
-| [第 12 章：异常处理与恢复](18-Chapter-12-Exception-Handling-and-Recovery.md) | 优雅错误处理，确保系统稳定性 | @EE | ✅ | ✅ | ⏳ |
-| [第 13 章：人机协作](19-Chapter-13-Human-in-the-Loop.md) | 人机协作决策，融合人类智慧与 AI 能力 | @曾汉 | ✅ | ✅ | ⏳ |
-| [第 14 章：知识检索 (RAG)](20-Chapter-14-Knowledge-Retrieval.md) | 检索增强生成技术，结合外部知识库 | @EE | ✅ | ✅ | ⏳ |
+| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 | alex学习 |
+|------|-------------|--------|---------|----------|----------|----------|
+| [第 12 章：异常处理与恢复](18-Chapter-12-Exception-Handling-and-Recovery.md) | 优雅错误处理，确保系统稳定性 | @EE | ✅ | ✅ | ⏳ | ⏳ |
+| [第 13 章：人机协作](19-Chapter-13-Human-in-the-Loop.md) | 人机协作决策，融合人类智慧与 AI 能力 | @曾汉 | ✅ | ✅ | ⏳ | ⏳ |
+| [第 14 章：知识检索 (RAG)](20-Chapter-14-Knowledge-Retrieval.md) | 检索增强生成技术，结合外部知识库 | @EE | ✅ | ✅ | ⏳ | ⏳ |
 
 ### 第四部分：生产设计模式 | Part Four: Production Patterns (114 页)
 
-| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 |
-|------|-------------|--------|---------|----------|----------|
-| [第 15 章：智能体间通信 (A2A)](21-Chapter-15-Inter-Agent-Communication.md) | 智能体通信协议，实现智能体间高效交互 | @朵朵肥 | ✅ | ✅ | ❌ |
-| [第 16 章：资源感知优化](22-Chapter-16-Resource-Aware-Optimization.md) | 资源优化管理，平衡性能与成本 | @IsaacZhaoo | ✅ | ✅ | ⏳ |
-| [第 17 章：推理技术](23-Chapter-17-Reasoning-Techniques.md) | 增强推理能力，提升决策质量 | @Diqing | ❌ | ❌ | ❌ |
-| [第 18 章：护栏/安全模式](24-Chapter-18-Guardrails-Safety-Patterns.md) | 安全保障机制，防止不当行为 | @IsaacZhaoo | ⏳ | ❌ | ❌ |
-| [第 19 章：评估与监控](25-Chapter-19-Evaluation-and-Monitoring.md) | 性能评估体系，量化智能体表现 | @朵朵肥 | ❌ | ❌ | ❌ |
-| [第 20 章：优先级排序](26-Chapter-20-Prioritization.md) | 任务优先级管理，优化资源分配 | @IsaacZhaoo | ✅ | ✅ | ⏳ |
-| [第 21 章：探索与发现](27-Chapter-21-Exploration-and-Discovery.md) | 自主探索机制，发现新解决方案 | @IsaacZhaoo | ✅ | ✅ | ⏳ |
+| 章节 | 设计模式概述 | 负责人 | AI 翻译 | 人工评审 | 交叉评审 | alex学习 |
+|------|-------------|--------|---------|----------|----------|----------|
+| [第 15 章：智能体间通信 (A2A)](21-Chapter-15-Inter-Agent-Communication.md) | 智能体通信协议，实现智能体间高效交互 | @朵朵肥 | ✅ | ✅ | ❌ | ⏳ |
+| [第 16 章：资源感知优化](22-Chapter-16-Resource-Aware-Optimization.md) | 资源优化管理，平衡性能与成本 | @IsaacZhaoo | ✅ | ✅ | ⏳ | ⏳ |
+| [第 17 章：推理技术](23-Chapter-17-Reasoning-Techniques.md) | 增强推理能力，提升决策质量 | @Diqing | ❌ | ❌ | ❌ | ⏳ |
+| [第 18 章：护栏/安全模式](24-Chapter-18-Guardrails-Safety-Patterns.md) | 安全保障机制，防止不当行为 | @IsaacZhaoo | ⏳ | ❌ | ❌ | ⏳ |
+| [第 19 章：评估与监控](25-Chapter-19-Evaluation-and-Monitoring.md) | 性能评估体系，量化智能体表现 | @朵朵肥 | ❌ | ❌ | ❌ | 🎯 |
+| [第 20 章：优先级排序](26-Chapter-20-Prioritization.md) | 任务优先级管理，优化资源分配 | @IsaacZhaoo | ✅ | ✅ | ⏳ | ⏳ |
+| [第 21 章：探索与发现](27-Chapter-21-Exploration-and-Discovery.md) | 自主探索机制，发现新解决方案 | @IsaacZhaoo | ✅ | ✅ | ⏳ | ⏳ |
 
 ### 附录 | Appendix (74 页)
 
