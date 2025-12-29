@@ -9,11 +9,13 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.types import Command
 from langgraph.config import get_stream_writer
 from langchain.agents.middleware import HumanInTheLoopMiddleware
+from langchain_mcp_adapters.client import MultiServerMCPClient
 
 
 from pydantic import BaseModel
 from langchain_openai import ChatOpenAI
 import os
+import asyncio
 from dotenv import load_dotenv
 load_dotenv()
 import warnings
@@ -143,6 +145,22 @@ def get_pet_info(runtime: ToolRuntime[UserContext, CustomState],) -> Command:
         ]
     })
 
+# 包装为异步函数，用于获取 MCP 工具
+async def load_mcp_tools():
+    """加载 MCP 服务器提供的工具"""
+    client = MultiServerMCPClient(
+        {
+            "eva-search": {
+                "command": "/Users/peacher/Desktop/aiagent/alex-first-MCP/pyMCP/venv_pyMCP/bin/python",
+                "args": ["/Users/peacher/Desktop/aiagent/alex-first-MCP/pyMCP/server.py"],
+                "transport": "stdio",
+            }
+        }
+    )
+    return await client.get_tools()
+# 获取 MCP 工具
+mcp_tools = asyncio.run(load_mcp_tools())
+
 
 model = ChatOpenAI(
     temperature=0, 
@@ -156,7 +174,7 @@ agent = create_agent(
     model,
     system_prompt="You are an assistant.",
 
-    tools=[get_account_info, get_account_info_with_user_id, summarize_conversation, get_user_info, save_user_info, greet, get_pet_info],
+    tools=[get_account_info, get_account_info_with_user_id, summarize_conversation, get_user_info, save_user_info, greet, get_pet_info, *mcp_tools],
     middleware=[  
         HumanInTheLoopMiddleware(interrupt_on={"get_pet_info": True}),  
     ],
@@ -176,37 +194,52 @@ def print_conversation(result):
     print("-"*50 + "\n")
 
 
-for stream_mode, chunk in agent.stream(
-    {"messages": [HumanMessage("greet the pet")]},
-    context=UserContext(user_id="user123"),
-    config={"configurable": {"thread_id": "1"}},
-    stream_mode=["values", "custom"],
-):
-    print(f"stream_mode: {stream_mode}")
-    if stream_mode == "values":
+async def main():
+    async for stream_mode, chunk in agent.astream(
+        {"messages": [HumanMessage("eva的主角是谁")]},
+        config={"configurable": {"thread_id": "1"}},
+        stream_mode=["values"],
+    ):
+        print(f"stream_mode: {stream_mode}")
         print([(message.type, message.content) for message in chunk["messages"]][-1])
-    else:
-        print(f"content: {chunk}")
-    print()
+        print()
+
+asyncio.run(main())
 
 
-# 从被 HumanInTheLoopMiddleware 中断的地方 (get_pet_info) 继续执行
-for stream_mode, chunk in agent.stream(
-    Command(resume={"decisions": [{"type": "approve"}]}),
-    context=UserContext(user_id="user123"),
-    config={"configurable": {"thread_id": "1"}},
-    stream_mode=["values", "custom"],
-):
-    print(f"stream_mode: {stream_mode}")
-    if stream_mode == "values":
-        print([(message.type, message.content) for message in chunk["messages"]][-1])
-    else:
-        print(f"content: {chunk}")
-    print()
+# --------------------------------------------------------------------------------------------------------------------------------------------
+
+# for stream_mode, chunk in agent.stream(
+#     {"messages": [HumanMessage("greet the pet")]},
+#     context=UserContext(user_id="user123"),
+#     config={"configurable": {"thread_id": "1"}},
+#     stream_mode=["values", "custom"],
+# ):
+#     print(f"stream_mode: {stream_mode}")
+#     if stream_mode == "values":
+#         print([(message.type, message.content) for message in chunk["messages"]][-1])
+#     else:
+#         print(f"content: {chunk}")
+#     print()
+
+
+# # 从被 HumanInTheLoopMiddleware 中断的地方 (get_pet_info) 继续执行
+# for stream_mode, chunk in agent.stream(
+#     Command(resume={"decisions": [{"type": "approve"}]}),
+#     context=UserContext(user_id="user123"),
+#     config={"configurable": {"thread_id": "1"}},
+#     stream_mode=["values", "custom"],
+# ):
+#     print(f"stream_mode: {stream_mode}")
+#     if stream_mode == "values":
+#         print([(message.type, message.content) for message in chunk["messages"]][-1])
+#     else:
+#         print(f"content: {chunk}")
+#     print()
 
 
 
-
+# --------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
